@@ -1,0 +1,265 @@
+Guiding questions
+- Were you able to answer the question of how annual members and casual riders use Cyclistic bikes differently?
+- What story does your data tell?
+- How do your findings relate to your original question?
+- Who is your audience? What is the best way to communicate with them?
+- Can data visualization help you share your findings?
+- Is your presentation accessible to your audience?
+
+Key tasks
+- Determine the best way to share your findings.
+- Create effective data visualizations.
+- Present your findings.
+- Ensure your work is accessible.
+
+Deliverable
+- Supporting visualizations and key findings
+
+
+>>>
+
+The conducted analysis effectively answered the question of how annual members and casual riders use Cyclistic bikes differently. The data reveals distinct usage patterns between the two groups, highlighting how their riding behaviors and motivations vary significantly.
+
+The data reveals striking contrasts between casual riders and annual members, backed by compelling data. Casual riders, on average, spend an impressive 2,413 seconds (about 40 minutes) per ride, significantly more than the 694 seconds (just over 11 minutes) average time for annual members, resulting in a staggering 247% longer average ride time for casual users. This substantial difference suggests that casual riders are likely using the service for leisurely activities, such as exploring the city or enjoying extended outings, while annual members primarily utilize their rides for shorter, practical trips.
+
+Examining weekly riding patterns further illuminates these usage behaviors. From the data, it is evident that weekdays see a surge in usage among annual members, with the highest ridership on Tuesday (69,694 rides). In contrast, casual riders peak on Sundays with 14,882 rides, equating to 29% of the total rides on that day. On Saturdays, casual riders account for 24.9% of the total rides by members, with 7,480 rides compared to 30,102 by members. 
+
+In general, annual members account for approximately 87.2% of the total rides, while casual riders make up about 12.8%. This substantial difference illustrates that while the company enjoys a robust membership base, casual riders still play a significant role in the overall usage, particularly during weekends. 
+
+These insights reveal a clear opportunity for Cyclistic: while annual members dominate weekday rides, casual riders tend to use the service for leisure on weekends, often enjoying longer ride durations. Annual members utilize Cyclistic bikes more regularly but for shorter trips, emphasizing convenience and utility. Understanding these behavioral differences directly addresses the original question and provides key insights into customer segmentation. By tailoring marketing efforts to highlight the cost-effectiveness and convenience of annual memberships, Cyclistic can potentially capture a significant portion of casual users, driving membership growth and enhancing customer loyalty. This refined approach could lead to better conversion rates, ultimately enhancing overall profitability.
+
+Audience:
+The primary audience includes Cyclistic's marketing team, the Director of Marketing, and other key stakeholders involved in customer acquisition and retention strategies. Additionally, the insights may also be relevant to the finance and operations teams, who are concerned with revenue optimization and service quality.
+
+Best Way to Communicate:
+1. Data-Driven Presentations: Use visuals like charts, graphs, and infographics to clearly present the differences in usage patterns between casual riders and annual members. Emphasize key metrics such as average ride duration and day-of-week trends to make the data compelling and easily digestible.
+
+2. Storytelling Approach: Frame the findings in a narrative that highlights the journey of a typical casual rider versus an annual member. This approach makes the data relatable and helps the audience connect the numbers to real-world scenarios, reinforcing the rationale behind targeted marketing strategies.
+
+3. Executive Summary Report: Prepare a concise, data-rich report that provides clear recommendations, supported by visual evidence. Ensure the language is professional, focused, and aligned with business objectives, highlighting how these insights can drive strategic decisions.
+
+4. Interactive Dashboards: Consider developing an interactive dashboard that allows stakeholders to explore the data themselves, making the insights more engaging and accessible. This can help the marketing team simulate different scenarios and test potential campaign impacts.
+
+>>>
+
+Visualization:
+
+1. [Total number of rides by day in a week](total_number_of_rides_by_day.png)
+2. [Average duration of rides by day in a week](average_duration_of_each_day_in_a_week.png)
+3. [Total number of rides by different customers](total_number_of_rides_for_different_customers.png)
+4. [Average duration of rides by different customers](average_ride_length_for_different_subscriber.png)
+5. [Total number of rides by different periods in a day](total_number_of_rides_for_different_periods_in_a_day.png)
+6. [Average duration of rides by different periods in a day](average_duration_per_ride_for_each_period_in_a_day.png)
+7. [Total number of rides by different periods in a day and customers](total_number_of_rides_for_different_periods_in_a_day_by_membership.png)
+8. [Average duration of rides by different periods in a day and customers](average_duration_per_ride_for_each_period_in_a_day_by_membership.png)
+
+
+R-Code:
+
+1. 
+
+```
+bike_shre$ride_length_sec <- as.numeric(as.POSIXct(bike_shre$ride_length, format="%H:%M:%S")) - as.numeric(as.POSIXct("00:00:00", format="%H:%M:%S"))
+average_seconds <- mean(bike_shre$ride_length_sec, na.rm = TRUE)
+print(average_seconds)
+
+
+
+average_ride_length <- bike_shre %>%
+  group_by(day_of_week) %>%
+  summarize(average_ride_length = mean(ride_length_sec, na.rm = TRUE))
+
+print(average_ride_length)
+
+
+ride_counts <- bike_shre %>%
+  group_by(day_of_week) %>%
+  summarise(num_rides = n())  
+
+print(ride_counts)
+
+
+ggplot(data=ride_counts) + 
+  geom_bar(mapping=aes(x=day_of_week, y=num_rides, fill = day_of_week), stat = "identity") +
+  labs(title="Total Number of Rides", subtitle = "Data for each day in a Week for First Quarter of Year, 1 = Sunday and 7 = Saturday",
+       caption="Data collected from Cyclistic")```
+
+
+2.
+
+```
+average_ride_length <- bike_shre %>%
+  group_by(day_of_week) %>%
+  summarize(average_ride_length = mean(ride_length_sec, na.rm = TRUE))
+
+View(average_ride_length)
+
+ggplot(data=average_ride_length) + 
+  geom_bar(mapping=aes(x=day_of_week, y=average_ride_length, fill = day_of_week), stat = "identity") +
+  labs(title="Average Duration of Each Ride (s)", subtitle = "Data for each day in a Week for First Quarter of Year, 1 = Sunday and 7 = Saturday",
+       caption="Data collected from Cyclistic")```
+
+
+
+3.
+
+```member_ride_counts <- bike_shre %>%
+  group_by(member_casual) %>%
+  summarise(num_rides = n())
+
+View(member_ride_counts)
+
+ggplot(data=member_ride_counts) + 
+  geom_bar(mapping=aes(x=member_casual, y=num_rides, fill = member_casual), stat = "identity") +
+  labs(title="Total Number of Rides", subtitle = "Data for different customers, casual = day-pass or single-pass rider and member = annual subscriber",
+       caption="Data collected from Cyclistic")```
+
+
+4.
+
+```average_member_ride <- bike_shre %>%
+  group_by(member_casual) %>%
+  summarize(average_ride_length = mean(ride_length_sec, na.rm = TRUE))
+
+View(average_member_ride)
+
+ggplot(data=average_member_ride) + 
+  geom_bar(mapping=aes(x=member_casual, y=average_ride_length, fill = member_casual), stat = "identity") +
+  labs(title="Average Duration of Each Ride (s)", subtitle = "Data for different customers, casual = day-pass or single-pass rider and member = annual subscriber",
+       caption="Data collected from Cyclistic")```
+
+
+5.
+
+```unique(bike_shre$Starting_Periods)
+bike_shre$Starting_Periods <- trimws(bike_shre$Starting_Periods)
+bike_shre$Starting_Periods <- case_when(
+  bike_shre$Starting_Periods == "Morning" ~ "Morning",
+  bike_shre$Starting_Periods == "Afternoon" ~ "Afternoon",
+  bike_shre$Starting_Periods == "Evening" ~ "Evening",
+  bike_shre$Starting_Periods == "Night" ~ "Night",
+  TRUE ~ "Unknown" # Handle any unexpected or unidentified periods
+)
+
+periods_ride_counts <- bike_shre %>%
+  group_by(Starting_Periods) %>%
+  summarise(num_rides = n())
+
+filtered_periods_ride_counts <- periods_ride_counts %>%
+  filter(Starting_Periods != "Unknown")
+
+ggplot(data=filtered_periods_ride_counts) + 
+  geom_bar(mapping=aes(x=Starting_Periods, y=num_rides, fill= Starting_Periods), stat = "identity") +
+  labs(title="Total Number of Rides", subtitle = "Data for different periods in a day",
+       caption="Data collected from Cyclistic")```
+
+
+
+6. 
+
+```periods_ride_length_avrg <- bike_shre %>%
+  group_by(Starting_Periods) %>%
+  summarise(average_ride_length = mean(ride_length_sec, na.rm = TRUE))
+
+filtered_periods_ride_length_avrg <- periods_ride_length_avrg %>%
+  filter(Starting_Periods != "Unknown")
+
+ggplot(data=filtered_periods_ride_length_avrg) + 
+  geom_bar(mapping=aes(x=Starting_Periods, y=average_ride_length, fill= Starting_Periods), stat = "identity") +
+  labs(title="Average Duration of Each Ride", subtitle = "Data for different periods in a day",
+       caption="Data collected from Cyclistic")```
+
+
+7.
+
+```periods_ride_counts <- bike_shre %>%
+  group_by(Starting_Periods, member_casual) %>%
+  summarise(num_rides = n())
+
+filtered_periods_ride_counts <- periods_ride_counts %>%
+  filter(Starting_Periods != "Unknown")
+
+View(filtered_periods_ride_counts)
+
+ggplot(data=filtered_periods_ride_counts) + 
+  geom_bar(mapping=aes(x=Starting_Periods, y=num_rides, fill= member_casual), stat = "identity") +
+  labs(title="Total Number of Rides", subtitle = "Data for different periods in a day",
+       caption="Data collected from Cyclistic") ```
+
+
+8. 
+
+```periods_ride_length_avrg <- bike_shre %>%
+  group_by(Starting_Periods,member_casual) %>%
+  summarise(average_ride_length = mean(ride_length_sec, na.rm = TRUE))
+
+filtered_periods_ride_length_avrg <- periods_ride_length_avrg %>%
+  filter(Starting_Periods != "Unknown")
+
+ggplot(data=filtered_periods_ride_length_avrg) + 
+  geom_bar(mapping=aes(x=Starting_Periods, y=average_ride_length, fill= member_casual), stat = "identity") +
+  labs(title="Average Duration of Each Ride", subtitle = "Data for different periods in a day",
+       caption="Data collected from Cyclistic")```
+
+
+
+>>> Key Findings:
+
+# Casual Riders vs. Annual Members:
+
+	- Casual riders have longer average ride durations (2,413 seconds) compared to annual members (694 seconds).
+	- Casual riders use the service less frequently but for extended leisure or sightseeing activities.
+	- Annual members dominate usage on weekdays, particularly for shorter and more frequent trips.
+	
+	- Casual Rider Patterns:
+		@ Highest number of casual riders during morning and afternoon periods, likely due to commuting and daytime activities.
+		@ Minimal activity from casual riders during nighttime, indicating less need for bike-sharing during those hours.
+
+
+# Day-of-Week Patterns:
+
+	- Highest usage on Tuesdays; lowest on Saturdays.
+	- Indicates a strong commuting trend among annual members, with reduced activity on weekends.
+
+
+# Seasonality Effect:
+
+	- Majority of rides occur in January, possibly due to New Year resolutions or annual membership renewals.
+
+
+# Time of Day Usage Patterns:
+
+	- More Rides in Morning and Afternoon:
+	- Highest number of rides occur during the morning and afternoon, aligning with common commuting hours or daytime errands.
+
+
+# Ride Duration Patterns:
+	- Longer Rides in Afternoon and Evening:
+		@ Afternoon and evening rides tend to be longer in duration compared to morning rides.
+		@ Afternoon: Potentially due to extended leisure activities, lunch breaks, or personal errands.
+		@ Evening: Likely associated with leisurely activities, sightseeing, or extended travel time after work.
+		@ Casual riders have significantly longer ride durations in the afternoon and evening, suggesting leisure activities or extended errands.
+
+	- Least Duration in Morning:
+
+		@ Morning rides are generally the shortest, suggesting a focus on commuting or getting to work quickly without detours.
+
+ 
+# Implications:
+
+	- Opportunity to convert casual riders to annual memberships by emphasizing cost-effectiveness for longer rides.
+	- Suggests scheduling maintenance on weekends when usage is lower.
+	- Afternoon and evening patterns suggest a focus on leisure or flexible schedules, presenting opportunities for targeted promotions during these times.
+	- Aligning marketing strategies around peak usage periods can maximize engagement and conversion efforts.
+	- Potential need to review pricing models for casual riders due to the extended ride durations.
+
+
+>>>
+
+Accessible to your audience?
+
+This visualization effectively communicates the differences in riding patterns across time periods, making it easy for the audience to understand usage trends. The use of a well-designed bar chart enhances clarity, allowing viewers to easily interpret the data. Proper labeling of axes and inclusion of a legend ensure that all information is clearly communicated. Additionally, providing context through titles and captions helps frame the data, making it easier for the audience to understand the key findings. Overall, these elements work together to create a comprehensive and engaging presentation that effectively conveys your insights.
+
+
+
+

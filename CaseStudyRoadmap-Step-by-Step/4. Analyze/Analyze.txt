@@ -1,0 +1,218 @@
+Guiding questions
+- How should you organize your data to perform analysis on it?
+- Has your data been properly formatted?
+- What surprises did you discover in the data?
+- What trends or relationships did you find in the data?
+- How will these insights help answer your business questions?
+
+Key tasks
+- Aggregate your data so it’s useful and accessible.
+- Organize and format your data.
+- Perform calculations.
+- Identify trends and relationships.
+
+Deliverable
+- A summary of your analysis
+
+
+>>>
+
+Analysis approach:
+1. mean of `ride_length`
+	``` 
+	install.packages("lubridate")
+	library(chron)
+	mean_ride_length <- mean(times(bike_shre$ride_length))
+	print(mean_ride_length)
+	```
+	
+	### ignoring the duration with more than a day, the mean of the `ride_length` is 00:14:49 [HH:MM:SS]
+    
+2. max of `ride_length`
+	```
+	bike_shre %>%
+  	  arrange(desc(ride_length_DHMS))
+	```
+
+	### the max of `ride_length` is 30:17:04:12 [DD:HH:MM:SS]
+
+3. mode of `day_of_week`
+	```
+	ggplot(data=bike_shre) + 
+  	geom_bar(mapping=aes(x=day_of_week))
+	```
+
+	### the mode of the 'day_of_week` is 3, Tuesday.
+
+4. mode of `month_of_ride`
+	```
+	get_mode <- function(x) {
+  	   uniq_x <- unique(x)
+  	   uniq_x[which.max(tabulate(match(x, uniq_x)))]
+	}
+
+	mode_value <- get_mode(bike_shre$month_of_ride)
+	print(mode_value)
+	```
+	
+	### the mode of `month_of_ride` is 1, January
+
+5. average of ride_length for `member_casual` , `day_of_week`
+	```
+	bike_shre$ride_length_sec <- as.numeric(as.POSIXct(bike_shre$ride_length, 
+		format="%H:%M:%S")) - as.numeric(as.POSIXct("00:00:00", format="%H:%M:%S"))
+	average_seconds <- mean(bike_shre$ride_length_sec, na.rm = TRUE)
+	print(average_seconds)
+
+
+	average_ride_length <- bike_shre %>%
+  	   group_by(day_of_week) %>%
+  	   summarize(average_ride_length = mean(ride_length_sec, na.rm = TRUE))
+	```
+
+	### 
+	`member_casual`
+	# casual: 2413 (s)
+	# member: 694	
+
+	`day_of_week`:
+	# 1: 1381 (s)
+	# 2: 751
+	# 3: 778
+	# 4: 837
+	# 5: 777
+	# 6: 816
+	# 7: 1099
+
+	`day_of_week` & `member_casual`:
+	# 1:
+		member: 820 (s)
+		casual: 2,739
+	
+	# 2:
+		member: 670
+		casual: 1,790
+	
+	# 3:
+		member: 683
+		casual: 2,029
+	
+	# 4:
+		member: 679
+		casual: 2,551
+	
+	# 5:
+		member: 672
+		casual: 2,093
+	
+	# 6:
+		member: 673
+		casual: 2,539
+	
+	# 7:
+		member: 732
+		casual: 2,575
+
+6. number of rides for users by `day_of_week`
+	```
+	ride_counts <- bike_shre %>%
+  	   group_by(day_of_week) %>%
+           summarise(num_rides = n())  
+
+	print(ride_counts)
+	```
+	
+	###
+	`day_of_week`:
+	# 1: 50,845
+	# 2: 66,755
+	# 3: 74,949
+	# 4: 69,866
+	# 5: 66,107
+	# 6: 60,641
+	# 7: 37,582
+
+
+
+	`day_of_week` & `member_casual`:
+	# 1:
+		member: 35,963
+		casual: 14,882
+	
+	# 2:
+		member: 61,920
+		casual: 4,835
+	
+	# 3:
+		member: 69,694
+		casual: 5,255
+	
+	# 4:
+		member: 63,972
+		casual: 5,894
+	
+	# 5:
+		member: 61,243
+		casual: 4,864
+	
+	# 6:
+		member: 55,494
+		casual: 5,147
+	
+	# 7:
+		member: 30,102
+		casual: 7,480
+
+>>> Formatting of Data:
+1. Dates and times were converted to consistent formats (e.g., DD:HH:MM:SS or HH:MM:SS) to facilitate accurate calculations, such as determining trip durations and sorting data chronologically.
+
+2. Numeric Data: Columns representing numerical values, such as `ride_length`, were checked to ensure they are in the correct format (numeric or times). This step avoids calculation errors and ensures accurate aggregation and analysis.
+
+3. Categorical Data: Categorical columns, such as member_casual, were verified for consistency, ensuring that values are properly labeled and there are no unexpected or misspelled entries.
+
+4. Missing and Invalid Data: Rows with missing values in critical columns (e.g., start and end times) were identified and addressed. Invalid data, such as trips where the start time is after the end time, were removed to maintain data integrity.
+
+
+>>> Findings:
+
+## Overview:
+In the analysis of customer behavior for Cyclistic, several surprising trends and relationships emerged between casual riders (who use single-ride or full-day passes) and annual members. This analysis aims to understand these behaviors to guide marketing strategies focused on converting casual riders into annual members.
+
+## Discoveries:
+1. Higher Usage Time Among Casual Riders: Despite having fewer casual riders compared to annual members, casual riders tend to spend more time on each ride. This behavior was unexpected, as it contradicts the assumption that regular (annual) members would use the service for extended durations. Casual riders might be engaging in leisure activities or sightseeing, resulting in longer ride times.
+
+2. Day-of-Week Patterns: The data shows that Tuesdays have the highest number of rides, while Saturdays have the least. This trend was surprising because weekends are generally associated with leisure activities, where higher usage might be expected, especially among casual riders. This pattern could indicate a strong work or commuting culture among members who utilize the service on weekdays.
+
+3. Seasonality Effect with High January Usage: Another unexpected observation was the majority of rides occurring in January, a month typically associated with colder weather in Chicago. This could be due to factors like New Year resolutions, promotions, or simply more annual memberships renewed at the start of the year.
+
+
+## Trends and Relationships:
+1. Usage Patterns: Annual members are frequent users but for shorter trips compared to casual riders. This pattern suggests that annual members primarily use the service for practical purposes like commuting to work or running quick errands, rather than leisure or long outings.
+
+2. Day Preferences: Both casual and annual members prefer weekdays over weekends, hinting at the potential influence of work-related commuting, even among casual users.
+
+3. Seasonal Peaks: The concentration of rides in January highlights the impact of seasonality and possible promotional periods that might drive usage.
+
+
+## Insights and Implications for Business Questions:
+1. Conversion Potential: Understanding that casual riders spend more time on each ride reveals a critical conversion opportunity. Marketing efforts could focus on highlighting the value and cost-effectiveness of annual memberships, especially for longer ride durations.
+
+2. Targeted Promotions: Knowing that Tuesdays have higher ride volumes, campaigns could be timed to coincide with peak usage days, enhancing engagement.
+
+3. Maintenance and Service Work: Since the data shows that bike usage is highest on weekdays, performing maintenance during the weekends—when bike usage is lower—would minimize disruptions to users. This strategy would help ensure the bikes remain in optimal condition during peak usage times, enhancing customer satisfaction and maintaining the quality of the service provided.
+
+4. Seasonal Marketing Strategies: The high activity in January suggests that this is an optimal time for promotional pushes or member retention campaigns, capitalizing on the renewed interest or increased usage typical at the beginning of the year.
+
+5. Pricing Model: Based on the observations, it is suggested that Cyclistic’s pricing model charges casual riders based on each trip rather than the duration, may not fully capture the value of longer rides. Since casual riders use bikes for extended periods but less frequently, the company might miss out on potential revenue, especially during exceptionally long rentals.
+
+If the pricing structure is mainly per ride without considering ride length, the company could be incurring unexpected costs such as increased wear and tear, maintenance, and opportunity costs from bikes being unavailable for other potential customers. This model can be less sustainable in the long run, as it fails to align costs with usage. Re-evaluating the pricing strategy, possibly introducing duration-based fees for casual riders, could help the company better balance revenue against operational costs, making it more financially viable.
+
+
+>>> Summary:
+
+The analysis of customer behavior for Cyclistic has uncovered surprising trends between casual riders and annual members, providing critical insights for strategic marketing decisions. Notably, casual riders, though fewer in number, tend to spend significantly more time on each ride than annual members, suggesting that their use is driven by leisure or sightseeing rather than the utilitarian purposes typical of members, such as commuting or running errands. Additionally, data reveals unexpected patterns, with the highest usage on Tuesdays and the lowest on Saturdays, challenging the assumption that weekends would attract more riders, especially casual users. High usage in January further points to seasonality effects, possibly influenced by New Year’s resolutions, promotions, or membership renewals.
+
+These findings suggest several business implications. The longer ride durations among casual riders present an opportunity to highlight the value of annual memberships in marketing efforts, especially for those who frequently use bikes for leisure. Understanding peak usage days and times can inform targeted promotions, while the observed weekday preference supports scheduling maintenance work during weekends to minimize disruption. Lastly, the current pricing model, which charges casual riders per trip rather than by duration, may not fully capture the costs of extended rides, underscoring the need to review pricing strategies to better align with usage patterns and enhance financial sustainability.
+
+
+

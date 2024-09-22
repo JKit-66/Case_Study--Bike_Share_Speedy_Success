@@ -1,0 +1,87 @@
+Guiding questions
+- What is your final conclusion based on your analysis?
+- How could your team and business apply your insights?
+- What next steps would you or your stakeholders take based on your findings?
+- Is there additional data you could use to expand on your findings?
+
+Key tasks
+- Create your portfolio.
+- Add your case study.
+- Practice presenting your case study to a friend or family member.
+
+Deliverable
+- Your top three recommendations based on your analysis
+
+
+>>>
+
+Based on the analysis, it is clear that there are distinct usage patterns between annual members and casual riders at Cyclistic. Annual members primarily use the service for shorter, frequent trips, indicating a focus on commuting and practical, everyday use. In contrast, casual riders, though less frequent, spend significantly more time per ride, especially in the afternoons and evenings, suggesting a focus on leisure or extended activities.
+
+
+>>> Application of insights:
+
+1. Marketing Strategy: Cyclistic can use these insights to create targeted marketing campaigns aimed at converting casual riders into annual members by emphasizing the cost-effectiveness of an annual membership for those who enjoy longer rides.
+
+2. Operational Planning: Since most rides occur on weekdays, maintenance and servicing of bikes should be scheduled on weekends to minimize disruptions and ensure that bikes are in optimal condition during peak usage times.
+
+3. Pricing Model Review: The pricing strategy should be reviewed, especially for casual riders, to ensure that longer durations do not result in missed revenue opportunities. Introducing duration-based pricing or caps on ride times could help align costs with usage.
+
+
+>>> Next Steps:
+
+1. Targeted Promotions: Develop and implement marketing promotions that highlight the benefits of annual memberships, particularly focusing on casual riders who use bikes for longer durations.
+
+2. Operational Adjustments: Adjust maintenance schedules to prioritize weekday availability and minimize weekend downtime.
+
+3. Pricing Strategy Adjustment: Re-evaluate the current pricing model for casual rides to better capture value from longer usage times, potentially introducing new pricing tiers or caps.
+
+4. Customer Feedback: Collect feedback from both casual and annual riders to better understand motivations and potential barriers to conversion, which can further refine marketing and operational strategies. 
+
+5. Monitoring and Adjustment: Continuously monitor ride patterns and customer behaviors to adjust strategies as needed, ensuring that Cyclistic remains aligned with user needs and market demands.
+
+
+>>> Top 3 Recommendations:
+
+@ 1. Revise the Pricing Model for Casual Riders: 
+
+	- Implement a tiered or duration-based pricing model for casual riders to better capture value from longer rides. Consider introducing fees for rides that exceed a certain duration to align revenue with the extended use of bikes. 
+
+	- This change would ensure that Cyclistic earns appropriate revenue for longer casual rides, reducing the potential for undercharging during extended use periods. It would also encourage casual riders to consider annual memberships if they frequently take longer rides, boosting membership sales.
+
+
+
+@ 2. Launch Targeted Membership Conversion Campaigns:
+
+	- Develop and promote targeted campaigns highlighting the value of annual memberships to casual riders, particularly those with longer ride durations. Emphasize cost savings, convenience, and exclusive member benefits to attract conversions.
+
+	- By converting high-value casual riders into annual members, Cyclistic can increase recurring revenue and reduce dependency on one-time payments, creating a more predictable revenue stream. This will also enhance customer loyalty and retention.
+
+
+
+@ 3. Optimize Operational Efficiency through Strategic Maintenance:
+
+	- Schedule bike maintenance and servicing during weekends, when ridership is lowest, to ensure bikes are in top condition during peak weekday periods. Implement predictive maintenance to reduce downtime and operational costs.
+
+	- This approach minimizes lost revenue opportunities during high-demand periods, enhances the user experience, and maintains the quality and reliability of Cyclistic's service, leading to higher customer satisfaction and repeat usage.
+
+
+
+>>> Additional Data to Expand Findings:
+
+Collecting and analyzing these following additional data points would provide a more comprehensive understanding of customer behaviors and station performance, allowing Cyclistic to make informed decisions that enhance service quality, drive revenue, and improve customer satisfaction.
+
+
+1. Location Data of Bike Stations: Analyzing the location data of each bike station would allow us to identify the most popular stations and high-demand areas. Understanding which locations attract the most riders could help Cyclistic optimize bike availability and station maintenance.
+
+	- Increase Bike Availability: Allocate more bikes to high-demand stations to ensure availability during peak times, preventing lost rides due to shortages.
+
+	- Targeted Advertising: Focus marketing efforts, promotions, and advertisements around these popular locations to attract new riders and encourage repeat use among existing customers.
+
+	- Enhanced Customer Service: Concentrate customer service resources, such as assistance lines or on-site support, in these high-traffic areas to improve the customer experience.
+
+
+2. Rider Demographics and Trip Purpose: Additional data on rider demographics (age, gender, etc.) and the purpose of their trips (commuting, leisure, etc.) can help tailor services and marketing.
+
+	- Customized Offerings: Create personalized marketing campaigns that cater to different demographic groups, such as special commuter packages for workers or family-friendly promotions for leisure riders.
+
+	- Service Enhancements: Offer services like route recommendations or safety gear rental that cater specifically to the identified trip purposes, enhancing the overall user experience and encouraging more frequent use.

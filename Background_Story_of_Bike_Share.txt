@@ -1,0 +1,31 @@
+BACKGROUND STORY:
+
+* Cyclistics's marketing strategy relied on building general awareness and appealing to broad consumer segments
+* Cyclistics has flexible pricing plans: 
+	- single-ride passes, full-day passes; ( casual riders )
+
+	- annual memberships ( members )
+
+* According to Cyclistics's finance analysts, annual members are much more profitable than casual riders. 
+	# Although the pricing flexibility helps Cyclistic attract more customers;
+	Moreno (Director of marketing) believes that maximizing the number of annual members will be key to future growth.
+	
+	# Rather than creating a marketing campaign that targets all-new customers, Moreno believes
+	there is a solid opportunity to convert casual riders into members
+
+* Design marketing team has set a clear goal:
+	## Converting casual riders into annual members, the team needs to better understand:	
+		1. How do annual members and casual riders use Cyclistic bikes differently?
+		2. Why would casual riders buy Cyclistic annual memberships?
+		3. How can Cyclistic use digital media to influence casual riders to become members?
+
+	## The team is interested in analyzing the Cyclistic historical bike trip data to identify trends.
+
+* Now, assigned with the first question, (How do annual members and casual riders use Cyclistic bikes differently?)
+	## Produce a report with these deliverables:
+		1. A clear statement of the business task
+		2. A description of all data sources used
+		3. Documentation of any cleaning or manipulation of data
+		4. A summary of your analysis
+		5. Supporting visualizations and key findings
+		6. Your top three recommendations based on your analysis

@@ -1,0 +1,47 @@
+Guiding questions
+	- What tools are you choosing and why?
+	- Have you ensured your data’s integrity?
+	- What steps have you taken to ensure that your data is clean?
+	- How can you verify that your data is clean and ready to analyze?
+	- Have you documented your cleaning process so you can review and share those results?
+
+Key tasks
+	- Check the data for errors.
+	- Choose your tools.
+	- Transform the data so you can work with it effectively.
+	- Document the cleaning process.
+
+Deliverable
+	- Documentation of any cleaning or manipulation of data
+
+
+
+>>>
+
+The data cleaning documentation includes specific actions taken, such as data type conversions, filtering criteria for data removal, and any data normalization methods applied. This ensures the entire process is transparent, reproducible, and understandable for stakeholders and future analyses.
+
+The primary tools used for this analysis are RStudio and Excel. RStudio was chosen for its powerful capabilities in data manipulation, cleaning, and visualization through libraries like `dplyr`, `tidyr`, and `ggplot2`. Excel was used for initial data inspection, quick data filtering, and for generating preliminary insights due to its user-friendly interface, which allows for easy interaction with data.
+
+Data integrity was ensured by checking for missing values, duplicates, and anomalies in key columns such as ride times, station locations, and user types. Consistency checks were performed to validate that the data aligned logically, e.g., start times preceding end times for trips.
+
+Steps included removing rows with missing or inconsistent data, correcting data types (e.g., converting date and time fields), and ensuring that all numerical data (like coordinates) are within expected ranges. Outliers were identified and assessed to ensure they did not represent data errors. Data readiness was verified through summary statistics checks, visualization of data distributions, and validation against known parameters (e.g., checking the geographical accuracy of station coordinates). Additionally, subsets of data were manually reviewed to cross-check for any inconsistencies.
+
+Cleaning Steps:
+1. Created a new column in MS Excel `Logic_Start_End` to ensure Logical Start and End Times,
+	=IF(D2<C2,"Invalid","Valid") to check if the end time (D2) is earlier than the start time (C2) for each row, marking the row as "Invalid" if true and "Valid" otherwise.
+
+2. Filtered the `Logic_Start_End` column to show only rows marked as "Invalid" and deleted all rows marked "Invalid" to ensure all remaining data entries have logically correct start and end times.
+
+3. Checked the entire dataset for empty cells by using Excel’s built-in tools like Go To Special > Blanks to highlight all blank cells and deleted rows containing missing values to maintain data integrity and completeness.
+
+4. From R Studio, the data type of a specific column is checked,
+	``` bike_shre <- read.csv("path/to/csvfile")
+	is_numeric <- is.numeric(bike_shre$end_station_id)
+	print(is_numeric) ```
+	
+# In the course of data cleaning, the primary issue identified was the presence of illogical starting and ending times for rides. To maintain data integrity, all records with such discrepancies were removed from the dataset. This step ensures that subsequent analyses are based on accurate and reliable data.
+
+
+Manipulation Steps:
+1. A new column, `ride_length` was created to calculate the total duration of each ride.
+2. New column, `day_of_week` was introduced to indicate the day of the week when the ride started, with 1 representing Sunday and 7 representing Saturday.

@@ -1,0 +1,54 @@
+a. Guiding questions
+	- What is the problem you are trying to solve?
+	- How can your insights drive business decisions ?
+
+b. Key tasks
+	- Identify the business task
+	- Consider key stakeholders
+
+c. Deliverable
+	- A clear statement of the business task
+
+
+
+>>>
+
+Business Task Statement:
+
+Objectives:	
+The primary goal is to understand how annual members and casual riders use Cyclistic bikes differently to inform a marketing strategy aimed at converting casual riders into annual members. This strategy focuses on increasing the profitability of Cyclistic by maximizing the number of annual memberships, as annual members have been identified as more profitable than casual riders. The goal is to uncover key behavioral patterns and insights that can help increase the number of annual memberships, maximizing revenue and customer retention for Cyclistic.
+
+
+How Insights can Drive Business Decisions?:
+1. Improving User Experience: 
+	- Insights on usage trends can guide product and service improvements, such as 	optimizing station locations, bike availability, or app features, to better cater 	to casual riders. 
+
+2. Pricing Strategy Adjustments: 
+	- Understanding what casual riders value most can help in designing promotional 	offers, such as discounts for the first few months of membership or special 	benefits that resonate with casual riders, encouraging them to transition to a 	membership.
+
+3. Resource Allocation:
+	- Identifying peak usage times and popular stations used by casual riders can help 	in better resource management, ensuring that the service meets customer demand 	effectively.
+
+
+Problem Statement:
+Cyclistic aims to increase its profitability by converting casual riders (those who use single-ride and full-day passes) into annual members. The task involves analyzing historical bike trip data, which includes information on ride duration, start and end locations, timestamps, user types (casual or member), and bike usage patterns to understand and identifying the differences, trends and behaviours in bike usage between casual riders and annual members. The insights gained from this analysis will guide the development of targeted marketing strategies to encourage casual riders to become annual members, thereby maximizing Cyclistic's revenue.
+
+
+Stakeholders:
+Although customers are not directly involved in decision-making, their behaviors and preferences are the primary focus of the analysis. Understanding their needs, motivations, and barriers is essential for crafting effective marketing strategies. They are benefit from tailored experiences, improved services, and targeted promotions that resonate with their usage patterns and preferences.
+
+The primary stakeholders include the marketing team, data analysts, finance team, customer service team and executive leadership. Each has a vested interest in understanding rider behavior to optimize marketing strategies and grow Cyclistic’s membership base. 
+
+# Marketing team: Responsible for crafting and executing marketing strategies based on the analysis. They design campaigns to target casual riders and persuade them to become members.
+
+# Data Analysts: Responsible for cleaning, processing, and interpreting the data to uncover patterns and trends. They provide the actionable insights needed to guide decision-making.
+
+# Finance Team: Evaluates the financial implications of converting casual riders into annual members. They assess profitability, pricing strategies, and the overall economic impact of increasing membership.
+
+# Customer Service Team: Handles interactions with users, providing insights into common customer queries and concerns. They can offer valuable feedback on potential pain points that prevent casual riders from converting to members.
+
+# Executive Leadership: Provides the strategic direction for the company and approves major initiatives. The executives need to ensure that all proposed strategies align with the company's broader goals and long-term vision.
+
+
+
+

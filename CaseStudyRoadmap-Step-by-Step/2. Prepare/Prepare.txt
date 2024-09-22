@@ -1,0 +1,69 @@
+Guiding questions
+	- Where is your data located?
+	- How is the data organized?
+	- Are there issues with bias or credibility in this data? Does your data ROCCC?
+	- How are you addressing licensing, privacy, security, and accessibility?
+	- How did you verify the data’s integrity?
+	- How does it help you answer your question?
+	- Are there any problems with the data?
+
+Key tasks
+	- Download data and store it appropriately.
+	- Identify how it’s organized.
+	- Sort and filter the data.
+	- Determine the credibility of the data.
+
+Deliverable
+	- A description of all data sources used
+
+
+>>>
+
+The primary data source is Cyclistic’s historical trip data, downloaded from the Divvy Trip Data website. The data is in CSV format, containing comprehensive ride information such as ride IDs, ride types, timestamps, locations, and user membership status. This data forms the foundation for analyzing user behavior to inform the marketing strategy aimed at increasing annual memberships. It is publicly available and can be accessed from (https://divvy-tripdata.s3.amazonaws.com/index.html). The data is typically provided in quarterly CSV files, such as “2022_Q1_divvy_tripdata.csv.” 
+
+The data is organized in a tabular format with columns including:
+ - Ride-related information:
+	~ `ride_id`, 
+	~ `rideable_type`, 
+ - Time:
+	~ `started_at`, 
+	~ `ended_at`, 
+
+ - Station name:
+	~ `start_station_name`, 
+	~ `end_station_name`, 
+
+ - Location:
+	~ `start_lat`, 
+	~ `start_lng`, 
+	~ `end_lat`, 
+	~ `end_lng`, 
+
+ - Membership:
+	~ `member_casual`, 
+and other ride-specific details. This structured organization facilitates sorting, filtering, and analysis.
+
+
+The data is comprehensive and directly sourced from Cyclistic’s operational data, ensuring credibility and reliability. However, potential biases could exist, such as seasonal trends or missing data points from specific stations. Ensuring the data is up-to-date and accurately reflects user behavior is crucial. Since the data is publicly available for analysis, but personal information like user identity is anonymized to protect privacy. Security measures are in place to ensure that sensitive data is not exposed, and licensing agreements allow data use for analytical and educational purposes.
+
+R - Reliable
+	# The data is sourced from the Cyclistic's official platform, with a structured data-logging process.
+
+O - Original
+	# The dataset originates directly from Cyclistic’s internal system, ensuring that the data is firsthand and not altered by third parties.
+
+C - Comprehensive
+	# The dataset includes various attributes such as ride ID, rideable type, start and end times, station names, station coordinates, and user membership types.
+
+C - Current
+	# Although the data is from 2020, it provides valuable insights:
+		- established usage patterns and 
+		- behaviors of Cyclistic’s users, 
+	which are often stable over time unless there have been major changes in operations or external factors.
+
+C - Cited
+	# Data sources are clearly documented, such as direct references to Cyclistic’s internal systems or external databases used for supplementary information. 
+
+Data integrity was verified by checking for missing values, duplicates, and inconsistencies in timestamps or station names. Basic validation checks, such as ensuring that start times precede end times and confirming ride IDs' uniqueness, help maintain data quality. This data provides direct insights into the usage patterns of casual riders versus members by analyzing ride-specific details, such as station names, location coordinates, and trip durations and the usage patterns of casual riders versus members, which is essential for understanding how these groups differ. This allows us to identify popular routes, peak usage times, and preferred stations for each rider type. Understanding these patterns reveals key behavioral differences—such as whether casual riders tend to start or end their trips in tourist-heavy areas or during weekends, compared to members who might use the service for daily commuting. By leveraging these findings, Cyclistic can identify opportunities to tailor offerings and promotions that appeal specifically to casual riders, encouraging them to convert to annual memberships.
+
+Potential problems include missing data entries, inaccuracies in station names, and inconsistent data formats. Additionally, external factors like weather or local events, which could influence ride patterns, are not included in the data.
